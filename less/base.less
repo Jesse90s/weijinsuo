@@ -1,0 +1,451 @@
+// 给html设置默认字体大小为100px
+html{
+    font-size: 100px;
+}
+
+// 给body还原成0.16rem
+body{
+    font-size: 0.16rem;
+}
+
+// 京东的主题颜色
+@main-color: #de181b;
+
+// 样式初始化文件
+* {
+    margin: 0;
+    padding: 0;
+    // 移动端一般会设置盒模型border-box（内聚），防止边框与padding撑大盒子超出屏幕宽度而出现滚动条
+    box-sizing: border-box;
+}
+
+a{
+    -webkit-tap-highlight-color: red;
+    // 移动端a标签按住的高亮背景色 设置透明科技
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+li{
+    list-style: none;
+}
+
+input{
+    // 去除输入框的内外框
+    border: 0;
+    outline: 0;
+}
+
+img{
+    // 去掉图片的边框
+    border: none;
+    // 去掉底部3px的间距
+    vertical-align: middle;
+}
+
+a{
+    color: #666;
+    text-decoration: none;
+}
+
+// 清除浮动的公共类
+.clearfix::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+// 左右浮动的类名
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}
+
+
+.bl{
+    border-left: 0.01rem solid #ccc;
+}
+.br{
+    border-right: 0.01rem solid #ccc;
+}
+.bt{
+    border-top: 0.01rem solid #ccc;
+}
+.bb{
+    border-bottom: 0.01rem solid #ccc;
+}
+
+// 头部区域的公共样式
+#header{
+    // background-color: red;
+    background-color: rgba(0, 0, 0, 0); //改成透明色
+    display: flex;
+
+    // 头部区域固定定位
+    position: fixed;
+    // padding-top: 0.5rem;   //padding会影响固定定位！！！
+    
+    // 固定定位就脱标了，固定定位元素的宽度参照的是浏览器宽度，而非其父容器
+    width: 100%;    //头部区域的宽 == 浏览器的宽
+    // 这样的话我们在PC端看手机版jd网页时，头部区域的宽度依旧参照浏览器宽度，就会出问题，所以要限制最大宽度为6.4rem
+    max-width: 6.4rem;
+
+    box-shadow: 0 0.03rem 0.14rem 0.02rem rgba(0,0,0,.12);
+
+    // 提高层级不让轮播图遮盖
+    z-index: 2;
+
+    // 属性选择器 匹配所有以icon-开头的类
+    [class^="icon-"]{
+        background-image: url('../images/sprites.png');
+        background-size: 2rem 2rem;
+
+        background-origin: content-box;
+        background-clip: content-box;
+    }
+
+    .icon-logo{
+        display: block;
+        width: 0.8rem;
+        height: 0.4rem;
+
+        // 背景图片默认左上角对齐
+        // background-image: url('../images/sprites.png');
+        background-position: 0 -1.08rem;
+        // background-size: 2rem 2rem;   //图片本身是400px*400px，要缩小一半为200*200px
+
+        // 在less文件中连写background，必须要对/进行转义 ~'/' 让/变成普通的CSS的斜杠而不是除号
+        // background: url('../images/sprites.png') 0 -1.09rem ~'/' 2rem 2rem;
+
+        // 一般移动端针对a标签都会使用padding（因为padding范围内都是鼠标可以点击到的，点击范围变大用户体验更好）
+        padding: 0.05rem 0.1rem;
+        /* 
+        背景图片默认是以padding的左上角为起始定位
+        如果想要背景图片以内容左上角为开始定位（即背景图跟着内容走，还可以被padding挤动），那就要设置origin与clip两个属性都为content-box
+
+        */
+        // background-origin: content-box;
+        // background-clip: content-box;
+    }
+
+    .icon-back{
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+        padding: 0.1rem;
+        background-position: -0.2rem 0;
+    }
+
+    .icon-menu{
+        display: block;
+        width: 0.4rem;
+        height: 0.4rem;
+        padding: 0.1rem;
+        background-position: -0.6rem 0;
+    }
+
+    .search-form{
+        flex: 1;
+        padding-top: 0.05rem;
+        position: relative;
+        
+        // 放大镜
+        .icon-search{
+            // display: inline-block;
+            width: 0.2rem;
+            height: 0.2rem;
+
+            // background-image: url('../images/sprites.png');
+            // background-position: -0.56rem -1.08rem;
+            // background-size: 2rem 2rem;
+            background: url('../images/sprites.png') -0.56rem -1.08rem ~'/' 2rem 2rem;
+ 
+            // 放大镜与搜索框是兄弟关系，只能提高放大镜的层级才能覆盖在搜索框上
+            position: absolute;
+            left: 0.05rem;
+            top: 0.1rem;
+
+        }
+        >input{
+            height: 0.3rem;
+            width: 100%;
+            border-radius: 0.15rem;
+
+            // 让占位文字右移30px
+            padding-left: 0.3rem;
+
+        }
+
+    }
+
+    // 登录a标签
+    .login{
+        display: block;
+        width: 0.6rem;
+        height: 0.4rem;
+
+        padding: 0.05rem 0.1rem;
+
+        text-align: center;
+        line-height: 0.3rem;
+
+        color: #fff;
+
+        // px改rem之后发现没有设置font-size
+        // font-size: 
+    }
+}
+
+
+// 底部区域的公共样式
+#footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 6.4rem;
+    background-color: #fff;
+
+    box-shadow: 0 0.03rem 0.14rem 0.02rem rgba(0,0,0,.12);
+
+    >ul{
+        display: flex;
+        >li{
+            flex: 1;
+            text-align: center;
+            >a{
+                display: block;
+                >img{
+                    width: 0.65rem;
+                    height: 0.5rem;
+
+                }
+            }
+        }
+    }
+}
+
+
+// // 给html设置默认字体大小为100px
+// html{
+//     font-size: 100px;
+// }
+
+// // 给body还原成16px
+// body{
+//     font-size: 16px;
+// }
+
+// // 京东的主题颜色
+// @main-color: #de181b;
+
+// // 样式初始化文件
+// * {
+//     margin: 0;
+//     padding: 0;
+//     // 移动端一般会设置盒模型border-box（内聚），防止边框与padding撑大盒子超出屏幕宽度而出现滚动条
+//     box-sizing: border-box;
+// }
+
+// a{
+//     -webkit-tap-highlight-color: red;
+//     // 移动端a标签按住的高亮背景色 设置透明科技
+//     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+// }
+
+// li{
+//     list-style: none;
+// }
+
+// input{
+//     // 去除输入框的内外框
+//     border: 0;
+//     outline: 0;
+// }
+
+// img{
+//     // 去掉图片的边框
+//     border: none;
+//     // 去掉底部3px的间距
+//     vertical-align: middle;
+// }
+
+// a{
+//     color: #666;
+//     text-decoration: none;
+// }
+
+// // 清除浮动的公共类
+// .clearfix::after{
+//     content: "";
+//     display: block;
+//     clear: both;
+// }
+
+// // 左右浮动的类名
+// .pull-left{
+//     float: left;
+// }
+// .pull-right{
+//     float: right;
+// }
+
+
+// .bl{
+//     border-left: 1px solid #ccc;
+// }
+// .br{
+//     border-right: 1px solid #ccc;
+// }
+// .bt{
+//     border-top: 1px solid #ccc;
+// }
+// .bb{
+//     border-bottom: 1px solid #ccc;
+// }
+
+// // 头部区域的公共样式
+// #header{
+//     // background-color: red;
+//     background-color: rgba(0, 0, 0, 0); //改成透明色
+//     display: flex;
+
+//     // 头部区域固定定位
+//     position: fixed;
+//     // padding-top: 50px;   //padding会影响固定定位！！！
+    
+//     // 固定定位就脱标了，固定定位元素的宽度参照的是浏览器宽度，而非其父容器
+//     width: 100%;    //头部区域的宽 == 浏览器的宽
+//     // 这样的话我们在PC端看手机版jd网页时，头部区域的宽度依旧参照浏览器宽度，就会出问题，所以要限制最大宽度为640px
+//     max-width: 640px;
+
+//     box-shadow: 0 3px 14px 2px rgba(0,0,0,.12);
+
+//     // 提高层级不让轮播图遮盖
+//     z-index: 2;
+
+//     // 属性选择器 匹配所有以icon-开头的类
+//     [class^="icon-"]{
+//         background-image: url('../images/sprites.png');
+//         background-size: 200px 200px;
+
+//         background-origin: content-box;
+//         background-clip: content-box;
+//     }
+
+//     .icon-logo{
+//         display: block;
+//         width: 80px;
+//         height: 40px;
+
+//         // 背景图片默认左上角对齐
+//         // background-image: url('../images/sprites.png');
+//         background-position: 0 -108px;
+//         // background-size: 200px 200px;   //图片本身是400px*400px，要缩小一半为200*200px
+
+//         // 在less文件中连写background，必须要对/进行转义 ~'/' 让/变成普通的CSS的斜杠而不是除号
+//         // background: url('../images/sprites.png') 0 -109px ~'/' 200px 200px;
+
+//         // 一般移动端针对a标签都会使用padding（因为padding范围内都是鼠标可以点击到的，点击范围变大用户体验更好）
+//         padding: 5px 10px;
+//         /* 
+//         背景图片默认是以padding的左上角为起始定位
+//         如果想要背景图片以内容左上角为开始定位（即背景图跟着内容走，还可以被padding挤动），那就要设置origin与clip两个属性都为content-box
+
+//         */
+//         // background-origin: content-box;
+//         // background-clip: content-box;
+//     }
+
+//     .icon-back{
+//         display: block;
+//         width: 40px;
+//         height: 40px;
+//         padding: 10px;
+//         background-position: -20px 0;
+//     }
+
+//     .icon-menu{
+//         display: block;
+//         width: 40px;
+//         height: 40px;
+//         padding: 10px;
+//         background-position: -60px 0;
+//     }
+
+//     .search-form{
+//         flex: 1;
+//         padding-top: 5px;
+//         position: relative;
+        
+//         // 放大镜
+//         .icon-search{
+//             // display: inline-block;
+//             width: 20px;
+//             height: 20px;
+
+//             // background-image: url('../images/sprites.png');
+//             // background-position: -56px -108px;
+//             // background-size: 200px 200px;
+//             background: url('../images/sprites.png') -56px -108px ~'/' 200px 200px;
+ 
+//             // 放大镜与搜索框是兄弟关系，只能提高放大镜的层级才能覆盖在搜索框上
+//             position: absolute;
+//             left: 5px;
+//             top: 10px;
+
+//         }
+//         >input{
+//             height: 30px;
+//             width: 100%;
+//             border-radius: 15px;
+
+//             // 让占位文字右移30px
+//             padding-left: 30px;
+
+//         }
+
+//     }
+
+//     // 登录a标签
+//     .login{
+//         display: block;
+//         width: 60px;
+//         height: 40px;
+
+//         padding: 5px 10px;
+
+//         text-align: center;
+//         line-height: 30px;
+
+//         color: #fff;
+//     }
+// }
+
+
+// // 底部区域的公共样式
+// #footer{
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+//     max-width: 640px;
+//     background-color: #fff;
+
+//     box-shadow: 0 3px 14px 2px rgba(0,0,0,.12);
+
+//     >ul{
+//         display: flex;
+//         >li{
+//             flex: 1;
+//             text-align: center;
+//             >a{
+//                 display: block;
+//                 >img{
+//                     width: 65px;
+//                     height: 50px;
+
+//                 }
+//             }
+//         }
+//     }
+// }

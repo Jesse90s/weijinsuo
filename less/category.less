@@ -1,0 +1,200 @@
+// 1. 引入base.less公共样式文件
+@import 'base.less';
+#header {
+    background-color: #eee;
+}
+
+// 只有先给hmtl和body都设置高度100%
+html,
+body {
+    height: 100%;
+}
+
+// 子元素main的高度100%才生效，与屏幕一样高
+#main {
+    // 设置这个样式的目的是为了让屏幕不出现滚动条，以模拟滑动效果，还可以加过渡弹簧等效果
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    padding: 0.4rem 0 0.5rem;
+
+    .category-left {
+        width: 0.85rem; 
+        // height: 5.77rem;   //main有了padding，直接上100%也可以
+        height: 100%;
+        overflow: hidden;
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            .swiper-slide {
+                height: auto;   //这里仅仅是为了覆盖.swiper-slide类的height: 100%;的样式
+                >li {
+                    a> {
+                        display: block;
+                        height: 0.46rem;
+                        line-height: 0.46rem;
+                        text-align: center;
+                        font-size: 0.14rem;
+                        width: 0.85rem;
+                        background-color: #eee;
+                    }
+                    &.active {
+                        >a {
+                            background-color: #fff;
+                            color: @main-color
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .category-right {
+        flex: 1;
+        overflow: hidden;
+        height: 100%;
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+
+            .swiper-wrapper {
+                /* 用来位移滑动的容器，滑动容器不要加任何样式 */
+                // width: 100%;
+                // height: 100%;
+                #branchList {
+                    height: auto;
+
+                    .jd-brand{
+                        >h4{
+                            font-size: 0.14rem;
+                            line-height: 0.4rem;
+                            padding-left: 0.2rem;
+                        }
+
+                        >ul{
+                            display: flex;
+                            flex-wrap: wrap;
+                            >li{
+                                width: 33.33%;
+                                margin: 0.05rem 0;
+                                >a{
+                                    display: block;
+                                    text-align: center;
+                                    >img{
+                                        width: 0.7rem;
+                                    }
+                                    >span{
+                                        display: block;
+                                        font-size: 0.12rem;
+                                        margin: 0.05rem 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+
+// // 1. 引入base.less公共样式文件
+// @import 'base.less';
+// #header {
+//     background-color: #eee;
+// }
+
+// // 只有先给hmtl和body都设置高度100%
+// html,
+// body {
+//     height: 100%;
+// }
+
+// // 子元素main的高度100%才生效，与屏幕一样高
+// #main {
+//     // 设置这个样式的目的是为了让屏幕不出现滚动条，以模拟滑动效果，还可以加过渡弹簧等效果
+//     height: 100%;
+//     overflow: hidden;
+//     display: flex;
+//     padding: 40px 0 50px;
+
+//     .category-left {
+//         width: 85px; 
+//         // height: 577px;   //main有了padding，直接上100%也可以
+//         height: 100%;
+//         overflow: hidden;
+//         .swiper-container {
+//             width: 100%;
+//             height: 100%;
+//             .swiper-slide {
+//                 height: auto;   //这里仅仅是为了覆盖.swiper-slide类的height: 100%;的样式
+//                 >li {
+//                     a> {
+//                         display: block;
+//                         height: 46px;
+//                         line-height: 46px;
+//                         text-align: center;
+//                         font-size: 14px;
+//                         width: 85px;
+//                         background-color: #eee;
+//                     }
+//                     &.active {
+//                         >a {
+//                             background-color: #fff;
+//                             color: @main-color
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .category-right {
+//         flex: 1;
+//         overflow: hidden;
+//         height: 100%;
+//         .swiper-container {
+//             width: 100%;
+//             height: 100%;
+
+//             .swiper-wrapper {
+//                 /* 用来位移滑动的容器，滑动容器不要加任何样式 */
+//                 // width: 100%;
+//                 // height: 100%;
+//                 #branchList {
+//                     height: auto;
+
+//                     .jd-brand{
+//                         >h4{
+//                             font-size: 14px;
+//                             line-height: 40px;
+//                             padding-left: 20px;
+//                         }
+
+//                         >ul{
+//                             display: flex;
+//                             flex-wrap: wrap;
+//                             >li{
+//                                 width: 33.33%;
+//                                 margin: 5px 0;
+//                                 >a{
+//                                     display: block;
+//                                     text-align: center;
+//                                     >img{
+//                                         width: 70px;
+//                                     }
+//                                     >span{
+//                                         display: block;
+//                                         font-size: 12px;
+//                                         margin: 5px 0;
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                     }
+
+//                 }
+//             }
+//         }
+//     }
+// }

@@ -1,0 +1,144 @@
+html {
+  font-size: 100px;
+}
+body {
+  font-size: 0.16rem;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  -webkit-tap-highlight-color: red;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+li {
+  list-style: none;
+}
+input {
+  border: 0;
+  outline: 0;
+}
+img {
+  border: none;
+  vertical-align: middle;
+}
+a {
+  color: #666;
+  text-decoration: none;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.bl {
+  border-left: 0.01rem solid #ccc;
+}
+.br {
+  border-right: 0.01rem solid #ccc;
+}
+.bt {
+  border-top: 0.01rem solid #ccc;
+}
+.bb {
+  border-bottom: 0.01rem solid #ccc;
+}
+#header {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  position: fixed;
+  width: 100%;
+  max-width: 6.4rem;
+  box-shadow: 0 0.03rem 0.14rem 0.02rem rgba(0, 0, 0, 0.12);
+  z-index: 2;
+}
+#header [class^="icon-"] {
+  background-image: url('../images/sprites.png');
+  background-size: 2rem 2rem;
+  background-origin: content-box;
+  background-clip: content-box;
+}
+#header .icon-logo {
+  display: block;
+  width: 0.8rem;
+  height: 0.4rem;
+  background-position: 0 -1.08rem;
+  padding: 0.05rem 0.1rem;
+  /* 
+        背景图片默认是以padding的左上角为起始定位
+        如果想要背景图片以内容左上角为开始定位（即背景图跟着内容走，还可以被padding挤动），那就要设置origin与clip两个属性都为content-box
+
+        */
+}
+#header .icon-back {
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  padding: 0.1rem;
+  background-position: -0.2rem 0;
+}
+#header .icon-menu {
+  display: block;
+  width: 0.4rem;
+  height: 0.4rem;
+  padding: 0.1rem;
+  background-position: -0.6rem 0;
+}
+#header .search-form {
+  flex: 1;
+  padding-top: 0.05rem;
+  position: relative;
+}
+#header .search-form .icon-search {
+  width: 0.2rem;
+  height: 0.2rem;
+  background: url('../images/sprites.png') -0.56rem -1.08rem / 2rem 2rem;
+  position: absolute;
+  left: 0.05rem;
+  top: 0.1rem;
+}
+#header .search-form > input {
+  height: 0.3rem;
+  width: 100%;
+  border-radius: 0.15rem;
+  padding-left: 0.3rem;
+}
+#header .login {
+  display: block;
+  width: 0.6rem;
+  height: 0.4rem;
+  padding: 0.05rem 0.1rem;
+  text-align: center;
+  line-height: 0.3rem;
+  color: #fff;
+}
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 6.4rem;
+  background-color: #fff;
+  box-shadow: 0 0.03rem 0.14rem 0.02rem rgba(0, 0, 0, 0.12);
+}
+#footer > ul {
+  display: flex;
+}
+#footer > ul > li {
+  flex: 1;
+  text-align: center;
+}
+#footer > ul > li > a {
+  display: block;
+}
+#footer > ul > li > a > img {
+  width: 0.65rem;
+  height: 0.5rem;
+}
